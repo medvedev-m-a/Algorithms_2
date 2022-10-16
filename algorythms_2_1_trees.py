@@ -29,7 +29,7 @@ class SimpleTree:
 
     def GetAllNodes(self):
         all_nodes = []
-        if self.Root.Children:
+        if self.Root:
             self.GetAllChild(all_nodes, self.Root)
         return all_nodes
 
@@ -42,7 +42,7 @@ class SimpleTree:
 
     def FindNodesByValue(self, val):
         found_nodes = []
-        if self.Root.Children:
+        if self.Root:
             self.FindValue(found_nodes, val, self.Root)
         return found_nodes
 

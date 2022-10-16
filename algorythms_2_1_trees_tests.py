@@ -10,6 +10,7 @@ a7 = SimpleTreeNode(5, None)
 a8 = SimpleTreeNode(3, None)
 
 tree = SimpleTree(a1)
+
 tree.AddChild(a1, a2)
 print(tree.LeafCount())
 
