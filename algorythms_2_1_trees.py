@@ -22,7 +22,9 @@ class SimpleTree:
             ParentNode.Children.append(NewChild)
 
     def DeleteNode(self, NodeToDelete):
+        NodeToDelete.Parent.Children.remove(NodeToDelete)
         NodeToDelete.Parent = None
+
         if NodeToDelete.Children:
             for Child in NodeToDelete.Children:
                 self.DeleteNode(Child)

@@ -12,31 +12,22 @@ a8 = SimpleTreeNode(3, None)
 tree = SimpleTree(a1)
 
 tree.AddChild(a1, a2)
-print(tree.LeafCount())
 
 tree.AddChild(a1, a3)
-print(tree.LeafCount())
 
 tree.AddChild(a2, a4)
 tree.AddChild(a2, a5)
 tree.AddChild(a3, a6)
-print(tree.LeafCount())
 
 
 tree.AddChild(a5, a7)
 
-all_nodes = tree.GetAllNodes()
-print(all_nodes)
-print(len(all_nodes))
-print(tree.Count())
-
-print(tree.FindNodesByValue(3))
 tree.AddChild(a7, a8)
-print(tree.FindNodesByValue(3))
-tree.MoveNode(a7, a6)
-print(tree.LeafCount())
+print(tree.GetAllNodes(), tree.Count())
+for _ in tree.GetAllNodes():
+    print(_)
 
-print(a1)
-print(a2)
-
-tree.DeleteNode(a4)
+tree.DeleteNode(a3)
+print(tree.GetAllNodes(), tree.Count())
+for _ in tree.GetAllNodes():
+    print(_)
