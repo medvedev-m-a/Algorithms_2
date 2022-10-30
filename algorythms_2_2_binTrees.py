@@ -116,6 +116,8 @@ class BST:
 
         self.parentLeftOrRight(self.nodeToDelete, self.nodeToReplace)
         self.count -= 1
+        self.CurrentInit()
+
 
     def parentLeftOrRight(self, nodeToDelete, nodeToReplace):
         if nodeToDelete == self.Root:
