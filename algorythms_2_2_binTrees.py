@@ -121,6 +121,7 @@ class BST:
         if nodeToDelete == self.Root:
             self.Root = nodeToReplace
             nodeToReplace.Parent = None
+            nodeToDelete.LeftChild = nodeToDelete.RightChild = None
             return None
         if nodeToDelete.Parent.LeftChild == nodeToDelete:
             nodeToDelete.Parent.LeftChild = nodeToReplace
