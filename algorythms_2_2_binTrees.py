@@ -76,13 +76,16 @@ class BST:
     def AddKeyValue(self, key, val):
         self.CurrentInit()
         # добавляем ключ-значение в дерево
-        if self.FindNodeByKey(key).NodeHasKey:
-            return False  # если ключ уже есть
-        self.newNode = BSTNode(key, val, self.currentNode.Node)
-        if self.currentNode.ToLeft:
-            self.currentNode.Node.LeftChild = self.newNode
+        if self.Root is None:
+            self.Root = BSTNode(key, val, None)
         else:
-            self.currentNode.Node.RightChild = self.newNode
+            if self.FindNodeByKey(key).NodeHasKey:
+                return False  # если ключ уже есть
+            self.newNode = BSTNode(key, val, self.currentNode.Node)
+            if self.currentNode.ToLeft:
+                self.currentNode.Node.LeftChild = self.newNode
+            else:
+                self.currentNode.Node.RightChild = self.newNode
         self.count += 1
         self.CurrentInit()
 
@@ -121,10 +124,14 @@ class BST:
 
     def parentLeftOrRight(self, nodeToDelete, nodeToReplace):
         if nodeToDelete == self.Root:
-            self.Root = nodeToReplace
-            nodeToReplace.Parent = None
-            nodeToDelete.LeftChild = nodeToDelete.RightChild = None
-            return None
+            if nodeToDelete.LeftChild or nodeToDelete.RightChild:
+                self.Root = nodeToReplace
+                nodeToReplace.Parent = None
+                nodeToDelete.LeftChild = nodeToDelete.RightChild = None
+                return None
+            else:
+                self.Root = None
+                return None
         if nodeToDelete.Parent.LeftChild == nodeToDelete:
             nodeToDelete.Parent.LeftChild = nodeToReplace
         elif nodeToDelete.Parent.RightChild == nodeToDelete:

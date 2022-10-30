@@ -34,6 +34,8 @@ from algorythms_2_2_binTrees import BSTNode, BST
 # a1 =
 tree = BST(BSTNode(182,0,None))
 tree.AddKeyValue(78,0)
+tree.DeleteNodeByKey(182)
+
 tree.AddKeyValue(185,0)
 tree.AddKeyValue(60,0)
 tree.AddKeyValue(91,0)
