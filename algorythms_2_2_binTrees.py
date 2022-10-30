@@ -118,6 +118,10 @@ class BST:
         self.count -= 1
 
     def parentLeftOrRight(self, nodeToDelete, nodeToReplace):
+        if nodeToDelete == self.Root:
+            self.Root = nodeToReplace
+            nodeToReplace.Parent = None
+            return None
         if nodeToDelete.Parent.LeftChild == nodeToDelete:
             nodeToDelete.Parent.LeftChild = nodeToReplace
         elif nodeToDelete.Parent.RightChild == nodeToDelete:
