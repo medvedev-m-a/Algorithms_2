@@ -30,6 +30,10 @@ class BST:
             self.count = 0
 
     def PrintTree(self, node):
+        # печать всего дерева вглубину
+        if self.Root is None:
+            print('empty')
+            return False
         if node is None:
             node = self.Root
         if node.LeftChild:
@@ -38,9 +42,6 @@ class BST:
         if node.RightChild:
             self.PrintTree(node.RightChild)
 
-    def CurrentInit(self):
-        self.currentNode = BSTFind()
-        self.currentNode.Node = self.Root
 
     def FindNodeByKey(self, key):
         # ищем в дереве узел и сопутствующую информацию по ключу

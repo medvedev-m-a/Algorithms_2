@@ -7,9 +7,6 @@ class BSTNode:
         self.LeftChild = None  # левый потомок
         self.RightChild = None  # правый потомок
 
-    def __str__(self):
-        return f"TreeNode({self.NodeKey} - {self.NodeValue})"
-
 
 class BSTFind:  # промежуточный результат поиска
 
@@ -29,23 +26,6 @@ class BST:
             self.count = 1
         else:
             self.count = 0
-
-        # инициализируем флаг сложности удаления узла
-        # default is False
-        self.difficult = False
-
-    def PrintTree(self, node):
-        # печать всего дерева вглубину
-        if self.Root is None:
-            print('empty')
-            return False
-        if node is None:
-            node = self.Root
-        if node.LeftChild:
-            self.PrintTree(node.LeftChild)
-        print(node)
-        if node.RightChild:
-            self.PrintTree(node.RightChild)
 
     def FindNodeByKey(self, key):
         # ищем в дереве узел и сопутствующую информацию по ключу
@@ -112,76 +92,38 @@ class BST:
 
     def DeleteNodeByKey(self, key):
         # удаляем узел по ключу
+
+        # если корня нет, возвращаем False
+        if self.Root is None:
+            return False
+
         # если узел не найден, возвращаем False
         if self.FindNodeByKey(key).NodeHasKey is False:
             return False
 
-        # определяем удаляемый узел
-        first_node = self.FindNodeByKey(key).Node
-        # определяем замещающий узел
-        second_node = self.childLeftOrRight(first_node)
-
-        self.shift_second_to_first(first_node, second_node)
-        self.count -= 1  # уменьшаем счетчик узлов после удаления
-        self.difficult = False  # возвращаем флаг сложности удаляемого узла
-
-    def shift_second_to_first(self, nodeToDelete, nodeToReplace):
-        # удаляем корень без узлов
-        if nodeToReplace is None:
-            if nodeToDelete == self.Root:
-                self.Root = None
-                return True
-
-        else:
-            # перемещаем правого потомка замещающего узла к его родителю
-            if nodeToReplace.RightChild:
-                if self.difficult:
-                    nodeToReplace.RightChild.Parent = nodeToReplace.Parent
-                    nodeToReplace.Parent.LeftChild = nodeToReplace.RightChild
-            else:
-                nodeToReplace.Parent.LeftChild = None
-
-            # перемещаем замещающий узел на место удаляемого
-            nodeToReplace.Parent = nodeToDelete.Parent
-            nodeToReplace.LeftChild = nodeToDelete.LeftChild
-            nodeToReplace.RightChild = nodeToDelete.RightChild
-
-        # замена указателей дочерних узлов с удаляемого
-        # на замещающий узел
-        if nodeToDelete.LeftChild:
-            nodeToDelete.LeftChild.Parent = nodeToReplace
-        if nodeToDelete.RightChild:
-            nodeToDelete.RightChild.Parent = nodeToReplace
-
-        # замена указателя родительского узла с удаляемого
-        # на замещающий узел
-        if nodeToDelete.Parent.LeftChild == nodeToDelete:
-            nodeToDelete.Parent.LeftChild = nodeToReplace
-        elif nodeToDelete.Parent.RightChild == nodeToDelete:
-            nodeToDelete.Parent.RightChild = nodeToReplace
-
-
-        # присваимваем Root замещающему узлу, если удаляемый был Root
-        if self.Root == nodeToDelete:
-            self.Root = nodeToReplace
-
-        # удаляем удаляемый узел
-        nodeToDelete.Parent = nodeToDelete.LeftChild = nodeToDelete.RightChild = None
-
-        return True
-
-    def childLeftOrRight(self, nodeToDelete):
-        if nodeToDelete.LeftChild is None and nodeToDelete.RightChild is None:
-            return None
-        elif nodeToDelete.LeftChild and nodeToDelete.RightChild is None:
-            return nodeToDelete.LeftChild
-        elif nodeToDelete.RightChild:
-            if nodeToDelete.RightChild.LeftChild:
-                minRight = self.FinMinMax(nodeToDelete.RightChild, False)
-                self.difficult = True
-            else:
-                nodeToDelete.RightChild
-            return minRight
+        self.delete_recursion(self.Root, key)
+        self.count -= 1
 
     def Count(self):
         return self.count  # количество узлов в дереве
+
+    def delete_recursion(self, node, key):
+        if node is None:
+            return node
+        if key < node.NodeKey:
+            node.LeftChild = self.delete_recursion(node.LeftChild, key)
+        elif key > node.NodeKey:
+            node.RightChild = self.delete_recursion(node.RightChild, key)
+        elif node.LeftChild is not None and node.RightChild is not None:
+            average = self.FinMinMax(node.RightChild, False)
+            node.NodeKey = average.NodeKey
+            node.NodeValue = average.NodeValue
+            node.RightChild = self.delete_recursion(node.RightChild, node.NodeKey)
+        else:
+            if node.LeftChild is not None:
+                node = node.LeftChild
+            elif node.RightChild is not None:
+                node = node.RightChild
+            else:
+                node = None
+        return node
