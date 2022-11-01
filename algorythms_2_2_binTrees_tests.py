@@ -13,17 +13,17 @@ tree = BST(BSTNode(nodes[0], 0, None))
 # print(tree.Count())
 # print()
 
-for i in range(1, 14):  # len(nodes)):
+for i in range(1, 5):  # len(nodes)):
     tree.AddKeyValue(nodes[i], i)
 
 tree.PrintTree(None)
 print(tree.Count())
 print()
 
-for i in range(13):  # len(nodes)):
-    tree.DeleteNodeByKey(nodes[i])
+# for i in range(2):  # len(nodes)):
+#     tree.DeleteNodeByKey(nodes[i])
 
-tree.DeleteNodeByKey(nodes[0])
+tree.DeleteNodeByKey(nodes[4])
 
 tree.PrintTree(None)
 print(tree.Count())

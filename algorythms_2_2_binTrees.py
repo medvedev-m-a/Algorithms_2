@@ -137,8 +137,10 @@ class BST:
             root.RightChild = self.delete_recursion(root.RightChild, root.NodeKey)
         else:
             if root.LeftChild is not None:
+                root.LeftChild.Parent = root.Parent
                 root = root.LeftChild
             elif root.RightChild is not None:
+                root.RightChild.Parent = root.Parent
                 root = root.RightChild
             else:
                 root = None
