@@ -110,8 +110,8 @@ class BST:
         # удаляем узел по ключу
 
         # если корня нет, возвращаем False
-        if self.Root is None:
-            return False
+        # if self.Root is None:
+        #     return
 
         # если узел не найден, возвращаем False
         if self.FindNodeByKey(key).NodeHasKey is False:
