@@ -20,8 +20,10 @@ tree.PrintTree(None)
 print(tree.Count())
 print()
 
-# tree.DeleteNodeByKey(nodes[-1])
-tree.DeleteNodeByKey(nodes[13])
+for i in range(13):  # len(nodes)):
+    tree.DeleteNodeByKey(nodes[i])
+
+tree.DeleteNodeByKey(nodes[0])
 
 tree.PrintTree(None)
 print(tree.Count())

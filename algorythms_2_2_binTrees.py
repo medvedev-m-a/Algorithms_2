@@ -7,6 +7,9 @@ class BSTNode:
         self.LeftChild = None  # левый потомок
         self.RightChild = None  # правый потомок
 
+    def __str__(self):
+        return f"TreeNode({self.NodeKey} - {self.NodeValue})"
+
 
 class BSTFind:  # промежуточный результат поиска
 
@@ -26,6 +29,19 @@ class BST:
             self.count = 1
         else:
             self.count = 0
+
+    def PrintTree(self, node):
+        # печать всего дерева вглубину
+        if self.Root is None:
+            print('empty')
+            return False
+        if node is None:
+            node = self.Root
+        if node.LeftChild:
+            self.PrintTree(node.LeftChild)
+        print(node)
+        if node.RightChild:
+            self.PrintTree(node.RightChild)
 
     def FindNodeByKey(self, key):
         # ищем в дереве узел и сопутствующую информацию по ключу
@@ -101,29 +117,29 @@ class BST:
         if self.FindNodeByKey(key).NodeHasKey is False:
             return False
 
-        self.delete_recursion(self.Root, key)
+        self.Root = self.delete_recursion(self.Root, key)
         self.count -= 1
 
     def Count(self):
         return self.count  # количество узлов в дереве
 
-    def delete_recursion(self, node, key):
-        if node is None:
-            return node
-        if key < node.NodeKey:
-            node.LeftChild = self.delete_recursion(node.LeftChild, key)
-        elif key > node.NodeKey:
-            node.RightChild = self.delete_recursion(node.RightChild, key)
-        elif node.LeftChild is not None and node.RightChild is not None:
-            average = self.FinMinMax(node.RightChild, False)
-            node.NodeKey = average.NodeKey
-            node.NodeValue = average.NodeValue
-            node.RightChild = self.delete_recursion(node.RightChild, node.NodeKey)
+    def delete_recursion(self, root, key):  # node,
+        if root is None:
+            return root
+        if key < root.NodeKey:
+            root.LeftChild = self.delete_recursion(root.LeftChild, key)
+        elif key > root.NodeKey:
+            root.RightChild = self.delete_recursion(root.RightChild, key)
+        elif root.LeftChild is not None and root.RightChild is not None:
+            average = self.FinMinMax(root.RightChild, False)
+            root.NodeKey = average.NodeKey
+            root.NodeValue = average.NodeValue
+            root.RightChild = self.delete_recursion(root.RightChild, root.NodeKey)
         else:
-            if node.LeftChild is not None:
-                node = node.LeftChild
-            elif node.RightChild is not None:
-                node = node.RightChild
+            if root.LeftChild is not None:
+                root = root.LeftChild
+            elif root.RightChild is not None:
+                root = root.RightChild
             else:
-                node = None
-        return node
+                root = None
+        return root
