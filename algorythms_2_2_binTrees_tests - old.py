@@ -28,10 +28,36 @@ class MyTests(unittest.TestCase):
             self.assertEqual(par_test, False)
 
         for i in range(1, 5):
-            tree.DeleteNodeByKey(nodes[i])
-        for i in range(1, 5):
             self.assertEqual(tree.DeleteNodeByKey(nodes[i]), False)
 
 
 if __name__ == '__main__':
     unittest.main()
+
+
+# tree.PrintTree(None)
+# print(tree.Count())
+# print()
+
+# tree.DeleteNodeByKey(nodes[0])
+#
+# tree.PrintTree(None)
+# print(tree.Count())
+# print()
+
+# for i in range(1, 5):  # len(nodes)):
+#     tree.AddKeyValue(nodes[i], i)
+#
+# tree.PrintTree(None)
+# print(tree.Count())
+# print()
+
+# for i in range(2):  # len(nodes)):
+#     tree.DeleteNodeByKey(nodes[i])
+
+# tree.DeleteNodeByKey(nodes[4])
+#
+# tree.PrintTree(None)
+# print(tree.Count())
+# print()
+

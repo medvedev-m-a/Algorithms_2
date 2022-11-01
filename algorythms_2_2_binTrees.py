@@ -30,6 +30,7 @@ class BST:
         else:
             self.count = 0
 
+    # служебная функция для печати всего дерева
     def PrintTree(self, node):
         # печать всего дерева вглубину
         if self.Root is None:
@@ -52,8 +53,8 @@ class BST:
 
     def BSTFind_by_key(self, key, node):
         # если дерево пустое, результат None
-        if node is None:
-            return None
+        if node.Node is None:
+            return node
 
         # проверка NodeKey == key
         if node.Node.NodeKey == key:
