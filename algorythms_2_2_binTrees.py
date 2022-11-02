@@ -31,18 +31,18 @@ class BST:
             self.count = 0
 
     # служебная функция для печати всего дерева
-    def PrintTree(self, node):
-        # печать всего дерева вглубину
-        if self.Root is None:
-            print('empty')
-            return False
-        if node is None:
-            node = self.Root
-        if node.LeftChild:
-            self.PrintTree(node.LeftChild)
-        print(node)
-        if node.RightChild:
-            self.PrintTree(node.RightChild)
+    # def PrintTree(self, node):
+    #     # печать всего дерева вглубину
+    #     if self.Root is None:
+    #         print('empty')
+    #         return False
+    #     if node is None:
+    #         node = self.Root
+    #     if node.LeftChild:
+    #         self.PrintTree(node.LeftChild)
+    #     print(node)
+    #     if node.RightChild:
+    #         self.PrintTree(node.RightChild)
 
     def FindNodeByKey(self, key):
         # ищем в дереве узел и сопутствующую информацию по ключу
@@ -90,6 +90,7 @@ class BST:
             else:
                 current_node.Node.RightChild = BSTNode(key, val, current_node.Node)
         self.count += 1
+        return True
 
     def FinMinMax(self, from_node, find_max):
         # ищем максимальный/минимальный ключ в поддереве
