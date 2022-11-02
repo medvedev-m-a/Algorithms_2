@@ -120,6 +120,7 @@ class BST:
 
         self.Root = self.delete_recursion(self.Root, key)
         self.count -= 1
+        return True
 
     def Count(self):
         return self.count  # количество узлов в дереве

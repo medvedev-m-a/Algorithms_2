@@ -22,7 +22,7 @@ class MyTests(unittest.TestCase):
                 par_test = True
             self.assertEqual(par_test, True)
 
-            self.assertEqual(tree.DeleteNodeByKey(nodes[i]), None)
+            self.assertEqual(tree.DeleteNodeByKey(nodes[i]), True)
             if par.LeftChild != nod and par.RightChild != nod:
                 par_test = False
             self.assertEqual(par_test, False)
