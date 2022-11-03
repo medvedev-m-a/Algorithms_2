@@ -30,20 +30,6 @@ class BST:
         else:
             self.count = 0
 
-    # служебная функция для печати всего дерева
-    def PrintTree(self, node):
-        # печать всего дерева вглубину
-        if self.Root is None:
-            print('empty')
-            return False
-        if node is None:
-            node = self.Root
-        if node.LeftChild:
-            self.PrintTree(node.LeftChild)
-        print(node)
-        if node.RightChild:
-            self.PrintTree(node.RightChild)
-
     def FindNodeByKey(self, key):
         # ищем в дереве узел и сопутствующую информацию по ключу
         # создаем первый узел поиска = корневому узлу
@@ -169,9 +155,9 @@ class BST:
         if node is None:
             return node
         if node.LeftChild:
-            self.in_order(node.LeftChild, all_nodes)
+            self.post_order(node.LeftChild, all_nodes)
         if node.RightChild:
-            self.in_order(node.RightChild, all_nodes)
+            self.post_order(node.RightChild, all_nodes)
         all_nodes.append(node)
 
     def pre_order(self, node: BSTNode, all_nodes: list) -> list:
@@ -179,9 +165,23 @@ class BST:
             return node
         all_nodes.append(node)
         if node.LeftChild:
-            self.in_order(node.LeftChild, all_nodes)
+            self.pre_order(node.LeftChild, all_nodes)
         if node.RightChild:
-            self.in_order(node.RightChild, all_nodes)
+            self.pre_order(node.RightChild, all_nodes)
+
+    # служебная функция для печати всего дерева in-order
+    def PrintTree(self, node):
+        # печать всего дерева вглубину
+        if self.Root is None:
+            print('empty')
+            return False
+        if node is None:
+            node = self.Root
+        if node.LeftChild:
+            self.PrintTree(node.LeftChild)
+        print(node)
+        if node.RightChild:
+            self.PrintTree(node.RightChild)
 
     def WideAllNodes(self) -> tuple:
         nodes_visited = []

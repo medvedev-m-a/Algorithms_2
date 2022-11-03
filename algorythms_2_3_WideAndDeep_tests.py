@@ -8,6 +8,6 @@ for i in range(1, 5):
 
 tree.PrintTree(a1)
 # print()
-n = tree.DeepAllNodes(1)
+n = tree.DeepAllNodes(2)
 h = tree.WideAllNodes()
 pass
