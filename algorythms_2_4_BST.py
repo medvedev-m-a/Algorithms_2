@@ -4,7 +4,7 @@ class aBST:
         # правильно рассчитайте размер массива для дерева глубины depth:
         self.tree_size = 2 ** depth - 1
         self.Tree = [None] * self.tree_size  # массив ключей
-        self.not_null = 0
+        self.not_null = False
 
     def __str__(self):
         return f'{self.Tree}'
@@ -20,7 +20,7 @@ class aBST:
         # Индекс правого потомка: 2 * I + 2
 
         # если массив пустой
-        if self.not_null == 0:
+        if self.not_null is False:
             return 0
 
         # если массивт заполнен, но узел не найден
@@ -54,7 +54,7 @@ class aBST:
         # если узел найден, но ключ пустой, добавляем ключ
         elif find_index <= 0:
             self.Tree[-find_index] = key
-            self.not_null += 1
+            self.not_null = True
             find_index = -find_index
 
         return find_index
