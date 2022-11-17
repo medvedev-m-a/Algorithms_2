@@ -10,9 +10,9 @@ while len(a) < 11:
 print(a)
 
 heap = Heap()
-heap.MakeHeap(a, 3)
+heap.MakeHeap(a, 1)
 
 print(heap)
 
-heap.GetMax()
+print(heap.GetMax())
 print(heap)
