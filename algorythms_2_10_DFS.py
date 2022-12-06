@@ -92,7 +92,6 @@ class SimpleGraph:
         # 1) Выбираем текущую вершину X. Для начала работы это будет исходная вершина А.
         VCurrent = VFrom
 
-
         return self.dfs_search(VCurrent, VTo, dfs_stack)
 
     def dfs_search(self, VCurrent: int, VTo: int, dfs_stack: Stack) -> list:
@@ -112,7 +111,7 @@ class SimpleGraph:
         # делаем её текущей X и переходим к п. 2.
         if self.IsEdge(VCurrent, VTo):
             dfs_stack.push(VTo)
-            return dfs_stack.stack
+            return self.stack_to_vertexlist(dfs_stack)
         for Vmid in range(self.max_vertex):
             if Vmid != VCurrent and self.IsEdge(VCurrent, Vmid):
                 if self.vertex[Vmid].Hit is False:
@@ -123,7 +122,14 @@ class SimpleGraph:
                 # помечаем его как посещённый, и после чего переходим к п. 4.
         dfs_stack.pop()
         if dfs_stack.peek() is None:
-            return dfs_stack.stack
+            return []
         else:
             self.vertex[dfs_stack.peek()].Hit = True
             return self.dfs_search(dfs_stack.peek(), VTo, dfs_stack)
+
+    def stack_to_vertexlist(self, stack: Stack) -> list:
+        vertexlist =[]
+        for i in stack.stack:
+            if self.vertex[i]:
+                vertexlist.append(self.vertex[i])
+        return vertexlist

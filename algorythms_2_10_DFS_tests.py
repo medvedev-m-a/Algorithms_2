@@ -47,4 +47,4 @@ sg.AddEdge(2, 4)
 
 print(sg.m_adjacency)
 
-print(sg.DepthFirstSearch(0, 3))
+print(sg.DepthFirstSearch(0, 4))
