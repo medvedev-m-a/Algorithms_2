@@ -91,6 +91,10 @@ class SimpleGraph:
 
         # 1) Выбираем текущую вершину X. Для начала работы это будет исходная вершина А.
         VCurrent = VFrom
+        self.vertex[VCurrent].Hit = True
+
+        dfs_stack.push(VCurrent)
+
 
         return self.dfs_search(VCurrent, VTo, dfs_stack)
 
@@ -98,10 +102,8 @@ class SimpleGraph:
         # 2) Фиксируем вершину X как посещённую.
         # Для этого в класс Vertex надо добавить, например, флажок hit,
         # который принимает значение True, если вершина была таким образом посещёна.
-        self.vertex[VCurrent].Hit = True
 
         # 3) Помещаем вершину X в стек.
-        dfs_stack.push(VCurrent)
 
         # 4) Ищем среди смежных вершин вершины X целевую вершину Б.
         # Если она найдена, записываем её в стек и возвращаем сам стек
@@ -113,13 +115,16 @@ class SimpleGraph:
             dfs_stack.push(VTo)
             return self.stack_to_vertexlist(dfs_stack)
         for Vmid in range(self.max_vertex):
-            if Vmid != VCurrent and self.IsEdge(VCurrent, Vmid):
+            if self.IsEdge(VCurrent, Vmid):
                 if self.vertex[Vmid].Hit is False:
+                    self.vertex[Vmid].Hit = True
+                    dfs_stack.push(Vmid)
                     return self.dfs_search(Vmid, VTo, dfs_stack)
                 # 5) Если непосещённых смежных вершин более нету, удаляем из стека верхний элемент.
                 # Если стек пуст, то прекращаем работу и информируем, что путь не найден.
                 # В противном случае делаем текущей вершиной X верхний элемент стека,
                 # помечаем его как посещённый, и после чего переходим к п. 4.
+        # self.vertex[dfs_stack.pop()].Hit = False
         dfs_stack.pop()
         if dfs_stack.peek() is None:
             return []
