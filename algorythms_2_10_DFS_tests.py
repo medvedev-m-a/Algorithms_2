@@ -43,7 +43,7 @@ sg.AddEdge(0, 1)
 sg.AddEdge(0, 2)
 sg.AddEdge(2, 3)
 sg.AddEdge(3, 4)
-# sg.AddEdge(4, 5)
+sg.AddEdge(4, 5)
 # sg.AddEdge(4, 5)
 
 print(sg.m_adjacency)

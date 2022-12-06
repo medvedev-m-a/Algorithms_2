@@ -136,5 +136,5 @@ class SimpleGraph:
         vertexlist =[]
         for i in stack.stack:
             if self.vertex[i]:
-                vertexlist.append(self.vertex[i])
+                vertexlist.insert(0, self.vertex[i])
         return vertexlist
