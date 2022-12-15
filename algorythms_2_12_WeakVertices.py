@@ -221,9 +221,10 @@ class SimpleGraph:
         if len(check_list) < 2:
             return False
 
-        for i in range(len(check_list) - 1):
-            if self.IsEdge(check_list[i], check_list[i+1]):
-                return True
+        for i in range(len(check_list)):
+            for j in range(len(check_list)):
+                if self.IsEdge(check_list[i], check_list[j]):
+                    return True
         return False
 
     def clean(self) -> None:

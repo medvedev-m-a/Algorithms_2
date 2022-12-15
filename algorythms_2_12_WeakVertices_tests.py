@@ -33,21 +33,24 @@ from algorythms_2_12_WeakVertices import *
 # if __name__ == '__main__':
 #     unittest.main()
 
-size = 8
+size = 9
 sg = SimpleGraph(size)
 
 for _ in range(size):
     sg.AddVertex(_)
 
-sg.AddEdge(0, 2)
-sg.AddEdge(1, 3)
-sg.AddEdge(3, 4)
-sg.AddEdge(3, 2)
-sg.AddEdge(3, 5)
-sg.AddEdge(3, 6)
-sg.AddEdge(3, 7)
+sg.AddEdge(0, 1)
+sg.AddEdge(0, 3)
+sg.AddEdge(0, 4)
+sg.AddEdge(1, 6)
 sg.AddEdge(2, 6)
+sg.AddEdge(2, 7)
+sg.AddEdge(3, 4)
+sg.AddEdge(3, 5)
 sg.AddEdge(4, 5)
+sg.AddEdge(4, 6)
+sg.AddEdge(6, 7)
+sg.AddEdge(7, 8)
 
 print(sg.m_adjacency)
 
